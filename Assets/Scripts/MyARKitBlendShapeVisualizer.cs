@@ -1,12 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARKit;
 using UnityEngine.XR.ARSubsystems;
-#if UNITY_IOS && !UNITY_EDITOR
-using System.Collections.Generic;
 using Unity.Collections;
-using UnityEngine.XR.ARKit;
-#endif
 
 namespace G13Kit
 {
@@ -21,6 +18,8 @@ namespace G13Kit
     [RequireComponent(typeof(ARFace))]
     public class MyARKitBlendShapeVisualizer : MonoBehaviour
     {
+        public ARFaceManager faceManager;
+
         [SerializeField]
         float m_CoefficientScale = 100.0f;
 
@@ -46,18 +45,29 @@ namespace G13Kit
             }
         }
 
-#if UNITY_IOS && !UNITY_EDITOR
+
         ARKitFaceSubsystem m_ARKitFaceSubsystem;
 
         Dictionary<ARKitBlendShapeLocation, int> m_FaceArkitBlendShapeIndexMap;
-#endif
+
 
         ARFace m_Face;
 
         void Awake()
         {
-            m_Face = GetComponent<ARFace>();
+            faceManager.facesChanged += FaceManager_facesChanged;
             CreateFeatureBlendMapping();
+        }
+
+        private void FaceManager_facesChanged(ARFacesChangedEventArgs obj)
+        {
+            if (obj.added.Count != 0)
+            {
+                m_Face = obj.added[0].GetComponent<ARFace>();
+                m_Face.updated += OnUpdated;
+
+                Debug.Log("😀" + obj.added.Count);
+            }
         }
 
         void CreateFeatureBlendMapping()
@@ -67,7 +77,6 @@ namespace G13Kit
                 return;
             }
 
-#if UNITY_IOS && !UNITY_EDITOR
             const string strPrefix = "";
             m_FaceArkitBlendShapeIndexMap = new Dictionary<ARKitBlendShapeLocation, int>();
 
@@ -123,7 +132,6 @@ namespace G13Kit
             m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerLeft");
             m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerRight");
             m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.TongueOut           ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "tongueOut");
-#endif
         }
 
         void SetVisible(bool visible)
@@ -135,34 +143,36 @@ namespace G13Kit
 
         void UpdateVisibility()
         {
-            var visible = enabled && (m_Face.trackingState == TrackingState.Tracking) && (ARSession.state > ARSessionState.Ready);
-            SetVisible(visible);
+            //if (m_Face == null)
+            //{
+            //    return;
+            //}
+
+            //var visible = enabled && (m_Face.trackingState == TrackingState.Tracking) && (ARSession.state > ARSessionState.Ready);
+            //SetVisible(visible);
         }
 
         void OnEnable()
         {
-#if UNITY_IOS && !UNITY_EDITOR
-            var faceManager = FindObjectsUtility.FindAnyObjectByType<ARFaceManager>();
             if (faceManager != null)
             {
                 m_ARKitFaceSubsystem = (ARKitFaceSubsystem)faceManager.subsystem;
             }
-#endif
 
-            UpdateVisibility();
-            m_Face.updated += OnUpdated;
-            ARSession.stateChanged += OnSystemStateChanged;
+            //UpdateVisibility();
+            //m_Face.updated += OnUpdated;
+            //ARSession.stateChanged += OnSystemStateChanged;
         }
 
         void OnDisable()
         {
-            m_Face.updated -= OnUpdated;
-            ARSession.stateChanged -= OnSystemStateChanged;
+            //m_Face.updated -= OnUpdated;
+            //ARSession.stateChanged -= OnSystemStateChanged;
         }
 
         void OnSystemStateChanged(ARSessionStateChangedEventArgs eventArgs)
         {
-            UpdateVisibility();
+            //UpdateVisibility();
         }
 
         void OnUpdated(ARFaceUpdatedEventArgs eventArgs)
@@ -178,7 +188,6 @@ namespace G13Kit
                 return;
             }
 
-#if UNITY_IOS && !UNITY_EDITOR
             using (var blendShapes = m_ARKitFaceSubsystem.GetBlendShapeCoefficients(m_Face.trackableId, Allocator.Temp))
             {
                 foreach (var featureCoefficient in blendShapes)
@@ -193,7 +202,6 @@ namespace G13Kit
                     }
                 }
             }
-#endif
         }
     }
 }
