@@ -18,6 +18,7 @@ namespace G13Kit
     [RequireComponent(typeof(ARFace))]
     public class MyARKitBlendShapeVisualizer : MonoBehaviour
     {
+        public Transform neck;
         public ARFaceManager faceManager;
 
         [SerializeField]
@@ -187,6 +188,23 @@ namespace G13Kit
             {
                 return;
             }
+
+            var rotationRelativeToCamera = Quaternion.Inverse(Camera.main.transform.rotation) * m_Face.transform.rotation; // this quaternion represents a face rotation relative to camera
+            var eulerAnglesRelativeToCamera = rotationRelativeToCamera.eulerAngles;
+            eulerAnglesRelativeToCamera.x *= -1f;
+
+            if (eulerAnglesRelativeToCamera.x > -180f)
+            {
+                eulerAnglesRelativeToCamera.x = Mathf.Clamp(eulerAnglesRelativeToCamera.x, -10f, 0);
+            }
+            else
+            {
+                eulerAnglesRelativeToCamera.x = Mathf.Clamp(eulerAnglesRelativeToCamera.x, -360f, -340f);
+            }
+
+            eulerAnglesRelativeToCamera.z *= -1f;
+
+            neck.transform.eulerAngles = eulerAnglesRelativeToCamera;
 
             using (var blendShapes = m_ARKitFaceSubsystem.GetBlendShapeCoefficients(m_Face.trackableId, Allocator.Temp))
             {

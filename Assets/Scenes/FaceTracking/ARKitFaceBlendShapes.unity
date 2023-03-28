@@ -679,6 +679,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.97237
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.23344514
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 387
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6, type: 3}
 --- !u!1 &788031012
@@ -1504,6 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f26ee7e719e9e4f3b956e25c0f44e0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neck: {fileID: 1953508281}
   faceManager: {fileID: 255841068}
   m_CoefficientScale: 100
   m_SkinnedMeshRenderer: {fileID: 1621718308}
@@ -1539,7 +1565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1415139547
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2537,6 +2563,12 @@ Transform:
 --- !u!137 &1621718308 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1011513264259593922, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+    type: 3}
+  m_PrefabInstance: {fileID: 781202381}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1953508281 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
     type: 3}
   m_PrefabInstance: {fileID: 781202381}
   m_PrefabAsset: {fileID: 0}
