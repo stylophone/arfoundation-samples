@@ -262,6 +262,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guy
       objectReference: {fileID: 0}
+    - target: {fileID: 366420348406322285, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1011513264259593922, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
         type: 3}
       propertyPath: m_BlendShapeWeights.Array.data[64]
@@ -326,6 +331,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9739254
+      objectReference: {fileID: 0}
+    - target: {fileID: 3325605202538484269, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22686855
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f6d2a30ced114f41bd78f4ec00e8bd6, type: 3}
