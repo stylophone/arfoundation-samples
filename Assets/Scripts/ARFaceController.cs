@@ -9,29 +9,17 @@ public class ARFaceController : MonoBehaviour
     public GameObject guy;
     public GameObject chick;
 
-    public enum HumanType
+    public List<VRMModelData> models;
+
+    private void Awake()
     {
-        Guy,
-        Chick
+        ChangeModel(0);
     }
 
-    public void SetHuman(HumanType type)
+    public void ChangeModel(int idx)
     {
-        if (type == HumanType.Guy)
-        {
-            guy.SetActive(true);
-            var smr = guy.transform.Find("Face").GetComponent<SkinnedMeshRenderer>();
-            blendShapeVisualizer.SkinnedMeshRenderer = smr;
-
-            chick.SetActive(false);
-        }
-        else
-        {
-            chick.SetActive(true);
-            var smr = chick.transform.Find("Face").GetComponent<SkinnedMeshRenderer>();
-            blendShapeVisualizer.SkinnedMeshRenderer = smr;
-
-            guy.SetActive(false);
-        }
+        models.ForEach(i => i.gameObject.SetActive(false));
+        models[idx].gameObject.SetActive(true);
+        blendShapeVisualizer.SkinnedMeshRenderer = models[idx].gameObject.transform.Find("Face").GetComponent<SkinnedMeshRenderer>();
     }
 }
