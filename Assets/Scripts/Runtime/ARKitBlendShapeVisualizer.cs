@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.XR.ARKit;
 using UnityEngine.XR.ARSubsystems;
 #if UNITY_IOS && !UNITY_EDITOR
 using System.Collections.Generic;
@@ -32,7 +31,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
         [SerializeField]
         SkinnedMeshRenderer m_SkinnedMeshRenderer;
 
-        public SkinnedMeshRenderer skinnedMeshRenderer
+        public SkinnedMeshRenderer SkinnedMeshRenderer
         {
             get
             {
@@ -61,7 +60,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void CreateFeatureBlendMapping()
         {
-            if (skinnedMeshRenderer == null || skinnedMeshRenderer.sharedMesh == null)
+            if (SkinnedMeshRenderer == null || SkinnedMeshRenderer.sharedMesh == null)
             {
                 return;
             }
@@ -70,66 +69,66 @@ namespace UnityEngine.XR.ARFoundation.Samples
             const string strPrefix = "";
             m_FaceArkitBlendShapeIndexMap = new Dictionary<ARKitBlendShapeLocation, int>();
 
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowDownLeft        ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browDownLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowDownRight       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browDownRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowInnerUp         ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browInnerUp");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowOuterUpLeft     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browOuterUpLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowOuterUpRight    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browOuterUpRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekPuff           ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekPuff");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekSquintLeft     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekSquintLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekSquintRight    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekSquintRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeBlinkLeft        ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeBlinkLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeBlinkRight       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeBlinkRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookDownLeft     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookDown_L");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookDownRight    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookDown_R");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookInLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookInLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookInRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookInRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookOutLeft      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookOutLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookOutRight     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookOutRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookUpLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookUpLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookUpRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookUpRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeSquintLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeSquintLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeSquintRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeSquintRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeWideLeft         ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeWideLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeWideRight        ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeWideRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawForward          ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawForward");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawLeft             ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawOpen             ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawOpen");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawRight            ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthClose          ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthClose");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthDimpleLeft     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthDimpleLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthDimpleRight    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthDimpleRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFrownLeft      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFrownLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFrownRight     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFrownRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFunnel         ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFunnel");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLeft           ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLowerDownLeft  ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLowerDownLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLowerDownRight ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLowerDownRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPressLeft      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPressLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPressRight     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPressRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPucker         ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPucker");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRight          ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRollLower      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRollLower");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRollUpper      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRollUpper");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthShrugLower     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthShrugLower");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthShrugUpper     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthShrugUpper");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthSmileLeft      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthSmileLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthSmileRight     ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthSmileRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthStretchLeft    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthStretchLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthStretchRight   ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthStretchRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthUpperUpLeft    ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthUpperUpLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthUpperUpRight   ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthUpperUpRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerLeft       ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerLeft");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerRight      ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerRight");
-            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.TongueOut           ]   = skinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "tongueOut");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowDownLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browDownLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowDownRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browDownRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowInnerUp] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browInnerUp");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowOuterUpLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browOuterUpLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.BrowOuterUpRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "browOuterUpRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekPuff] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekPuff");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekSquintLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekSquintLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.CheekSquintRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "cheekSquintRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeBlinkLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeBlinkLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeBlinkRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeBlinkRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookDownLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookDown_L");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookDownRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookDown_R");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookInLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookInLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookInRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookInRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookOutLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookOutLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookOutRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookOutRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookUpLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookUpLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeLookUpRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeLookUpRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeSquintLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeSquintLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeSquintRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeSquintRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeWideLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeWideLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.EyeWideRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "eyeWideRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawForward] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawForward");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawOpen] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawOpen");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.JawRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "jawRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthClose] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthClose");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthDimpleLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthDimpleLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthDimpleRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthDimpleRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFrownLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFrownLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFrownRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFrownRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthFunnel] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthFunnel");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLowerDownLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLowerDownLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthLowerDownRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthLowerDownRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPressLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPressLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPressRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPressRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthPucker] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthPucker");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRollLower] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRollLower");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthRollUpper] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthRollUpper");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthShrugLower] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthShrugLower");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthShrugUpper] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthShrugUpper");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthSmileLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthSmileLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthSmileRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthSmileRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthStretchLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthStretchLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthStretchRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthStretchRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthUpperUpLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthUpperUpLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.MouthUpperUpRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "mouthUpperUpRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerLeft] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerLeft");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.NoseSneerRight] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "noseSneerRight");
+            m_FaceArkitBlendShapeIndexMap[ARKitBlendShapeLocation.TongueOut] = SkinnedMeshRenderer.sharedMesh.GetBlendShapeIndex(strPrefix + "tongueOut");
 #endif
         }
 
         void SetVisible(bool visible)
         {
-            if (skinnedMeshRenderer == null) return;
+            if (SkinnedMeshRenderer == null) return;
 
-            skinnedMeshRenderer.enabled = visible;
+            SkinnedMeshRenderer.enabled = visible;
         }
 
         void UpdateVisibility()
@@ -172,7 +171,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
 
         void UpdateFaceFeatures()
         {
-            if (skinnedMeshRenderer == null || !skinnedMeshRenderer.enabled || skinnedMeshRenderer.sharedMesh == null)
+            if (SkinnedMeshRenderer == null || !SkinnedMeshRenderer.enabled || SkinnedMeshRenderer.sharedMesh == null)
             {
                 return;
             }
@@ -187,7 +186,7 @@ namespace UnityEngine.XR.ARFoundation.Samples
                     {
                         if (mappedBlendShapeIndex >= 0)
                         {
-                            skinnedMeshRenderer.SetBlendShapeWeight(mappedBlendShapeIndex, featureCoefficient.coefficient * coefficientScale);
+                            SkinnedMeshRenderer.SetBlendShapeWeight(mappedBlendShapeIndex, featureCoefficient.coefficient * coefficientScale);
                         }
                     }
                 }
